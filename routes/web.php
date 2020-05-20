@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Console\Input;
+use App\Car;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +22,19 @@ Route::get('/DetaliiReparatie', 'PagesController@DetaliiReparatie');
 
 Route::get('/Part', 'PartsController@index');
 Route::resource('Part', 'PartController');
+Route::get('/Car', 'CarsController@index');
+Route::resource('Car', 'CarController');
 
 Route::post('submitpiese', 'PartController@store');
+Route::post('submitclient', 'CarController@store');
+
+Route::post('/search',function(){
+    $q = Input::get ( 'q' );
+    $car = User::where('nr_masina','LIKE','%'.$q.'%')->orWhere('nume','LIKE','%'.$q.'%')->get();
+    if(count($car) > 0)
+        return view('welcome')->withDetails($car)->withQuery ( $q );
+    else return view ('welcome')->withMessage('No Details found. Try to search again !');
+});
 
 // Route::get('editeaza', 'PartController@editeaza');
 // Route::get('/Part/{$id}/edit', 'PartsController@edit');

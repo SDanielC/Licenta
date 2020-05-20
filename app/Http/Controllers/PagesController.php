@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\part;
+use App\Part;
 
 class PagesController extends Controller
 {
@@ -15,6 +15,11 @@ class PagesController extends Controller
     public function CreareProgramare ()
     {
         return view('CreareProgramare');
+    }
+
+    public function CreareClient ()
+    {
+        return view('CreareClient');
     }
 
     public function DetaliiReparatie ()

@@ -40,6 +40,7 @@
                             <ul class="widget widget-menu unstyled">
 
                                 <li class="active"><a href="CreareProgramare"><i class="menu-icon icon-paste"></i>Creare Programare </a></li>
+                                <li class="active"><a href="Car"><i class="menu-icon icon-paste"></i>Creare Client </a></li>
                                 <li class="active"><a href="DetaliiReparatie"><i class="menu-icon icon-table"></i>Detalii Reparatie </a></li>
                                 <li class="active"><a href="Part"><i class="menu-icon icon-inbox"></i>Stoc Piese </a></li>
                 
