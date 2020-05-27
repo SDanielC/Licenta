@@ -16,25 +16,25 @@ use App\Car;
 */
 
 Route::get('/', 'PagesController@home');
-Route::get('/CreareProgramare', 'PagesController@CreareProgramare');
-Route::get('/DetaliiReparatie', 'PagesController@DetaliiReparatie');
+// Route::get('/Detalii', 'PagesController@AdaugareReparatie');
 
-
-Route::get('/Part', 'PartsController@index');
-Route::resource('Part', 'PartController');
-Route::get('/Car', 'CarsController@index');
+// Route::get('/Car', 'CarController@create');
 Route::resource('Car', 'CarController');
+Route::get('/Car', 'CarController@create');
+Route::resource('Detalii', 'CarController');
+Route::get('/Detalii', 'CarController@index');
+// Route::get('/Detalii', 'CarController@show');
+
+// Route::get('/Part', 'PartController@Part');
+Route::resource('Part', 'PartController');
+// Route::get('/Edit', 'PartController@Edit');
 
 Route::post('submitpiese', 'PartController@store');
 Route::post('submitclient', 'CarController@store');
 
-Route::post('/search',function(){
-    $q = Input::get ( 'q' );
-    $car = User::where('nr_masina','LIKE','%'.$q.'%')->orWhere('nume','LIKE','%'.$q.'%')->get();
-    if(count($car) > 0)
-        return view('welcome')->withDetails($car)->withQuery ( $q );
-    else return view ('welcome')->withMessage('No Details found. Try to search again !');
-});
+Route::post('sendEmail', 'CarController@send');
+
+// Route::post('/search', 'PagesController@search');
 
 // Route::get('editeaza', 'PartController@editeaza');
 // Route::get('/Part/{$id}/edit', 'PartsController@edit');

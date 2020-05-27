@@ -18,6 +18,7 @@ class Cars extends Migration
             $table->string('nume');
             $table->string('prenume');
             $table->string('telefon');
+            $table->string('email');
             $table->string('nr_masina');
             $table->string('seria');
             $table->string('marca');
@@ -26,6 +27,9 @@ class Cars extends Migration
             $table->string('combustibil');
             $table->string('km');
             $table->string('motor');
+            $table->string('defect');
+            $table->string('detalii_reparatii');
+            $table->string('data_programare');
             $table->timestamps();
         });
     }

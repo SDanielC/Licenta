@@ -18,14 +18,22 @@
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
                         <i class="icon-reorder shaded"></i></a><a class="brand" href="/">Admin ASD </a>
-                    <div class="nav-collapse collapse navbar-inverse-collapse">
-                        <form class="navbar-search pull-left input-append" action="#">
-                        <input type="text" class="span3">
-                        <button class="btn" type="button">
-                            <i class="icon-search"></i>
-                        </button>
-                        </form>
-                    </div>
+                        <div class="span9">
+                            <div class="module">
+                                <div class="module-head">
+                                    <form action="/search" method="POST" role="search">
+                                        {{ csrf_field() }}
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="q"
+                                                placeholder="Numar Masina"> <span class="input-group-btn">
+                                                <button type="submit" class="btn btn-default">Cautare</button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>       
+                        </div>
+    
                     <!-- /.nav-collapse -->
                 </div>
             </div>
@@ -39,9 +47,8 @@
                         <div class="sidebar">
                             <ul class="widget widget-menu unstyled">
 
-                                <li class="active"><a href="CreareProgramare"><i class="menu-icon icon-paste"></i>Creare Programare </a></li>
-                                <li class="active"><a href="Car"><i class="menu-icon icon-paste"></i>Creare Client </a></li>
-                                <li class="active"><a href="DetaliiReparatie"><i class="menu-icon icon-table"></i>Detalii Reparatie </a></li>
+                                <li class="active"><a href="Car"><i class="menu-icon icon-paste"></i>Preluare Masina </a></li>
+                                <li class="active"><a href="Detalii"><i class="menu-icon icon-table"></i>Detalii </a></li>
                                 <li class="active"><a href="Part"><i class="menu-icon icon-inbox"></i>Stoc Piese </a></li>
                 
                             </ul>

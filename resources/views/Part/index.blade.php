@@ -10,7 +10,7 @@
                 
                     <div align="right">
                         <!-- <a href="{{action('PartController@create')}}" class="btn btn-primary">Add</a> -->
-
+                            
                         <br />
                         <br />
                     </div>
@@ -25,18 +25,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                         @foreach($parts as $part) 
-                            <tr>
-                                <td> {{ $part["cod"] }}</td>
-                                <td> {{ $part["denumire"] }}</td>
-                                <td> {{ $part["cantitate"] }}</td>
-                                <td><button class="btn btn-info" data-cod="{{$part->cod}}" data-denumire="{{$part->denumire}}" data-cantitate="{{$part->cantitate}}" data-toggle="modal" data-target="#edit">Editeaza</button></td>
-                                <td>{!! Form::open(['method' => 'Delete', 'route' => ['Part.destroy', $part->id ?? '']]) !!}
-                                    <button type="submit" class="btn btn-primary">Delete</button>
-                                {!! Form::close() !!}</td>
+                            @foreach($parts as $part) 
+                                <tr>
+                                    <td> {{ $part["cod"] }}</td>
+                                    <td> {{ $part["denumire"] }}</td>
+                                    <td> {{ $part["cantitate"] }}</td>
+                                    <td><a href="{{action('PartController@edit', $part['id'])}}" class="btn btn-primary">Edit</a></td>
+                                    <!-- <td>{!! Form::open(['method' => 'Delete', 'route' => ['Part.destroy', $part->id ?? '']]) !!}
+                                        <button type="submit" class="btn btn-primary">Delete</button>
+                                    {!! Form::close() !!}</td> -->
+                                    <td><form method="post" class="delete_form" action="{{action('PartController@destroy', $part['id'])}}">
+                                {{csrf_field()}}
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                </tr>
+                            @endforeach
 
-                            </tr>
-                        @endforeach
                             <tr id="myDIV">
                                 <form action="submitpiese" method="POST">
                                 @csrf
@@ -53,6 +58,9 @@
             </div>
         </div>
     </div>
+
+
+
 @endsection
 
 

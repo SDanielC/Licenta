@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Creare Masina')
+@section('title', 'Preluare Masina')
 
 @section('content')
 
@@ -9,6 +9,9 @@
 
 			<div class="module">
 				<div class="module-head">
+                @if(session('message'))
+                    <div class="alert alert-succes">{{session('message')}}</div>
+                @endif
                 @if(count($errors) > 0)
                     <div class="alert alert-danger">
                     <ul>
@@ -23,6 +26,7 @@
                     <p>{{ \Session::get('success') }}</p>
                     </div>
                 @endif
+                    <!-- <form action="sendEmail" method="post"> -->
                     <form method="post" action="{{url('Car')}}">
                     {{csrf_field()}}
                         <div>  
@@ -32,6 +36,7 @@
                         Nume:                <input type="text"   size="20"   maxlength="17" name="nume" /><br/>
                         Prenume:             <input type="text"   size="20"   maxlength="10" name="prenume" /><br/>
                         Telefon:             <input type="tel"   size="20"   maxlength="10" name="telefon" /><br/>
+                        Email:             <input type="email"   size="20"   maxlength="50" name="email" /><br/>
                         <br/>
                         <div>  
                             <h3>Detalii Masina</h3>
@@ -45,10 +50,15 @@
                         Combustibil:         <input type="text"   size="10"   maxlength="10" name="combustibil" /><br/>
                         KM:                  <input type="text"   size="10"   maxlength="6" name="km" /><br/>
                         Motor:               <input type="text"   size="10"   maxlength="10" name="motor" /><br/>
+                        Defect:               <input type="text"   size="50"   maxlength="50" name="defect" /><br/>
+                        Detalii Reparatii:    <input type="text"   size="150"   maxlength="150" name="detalii_reparatii" /><br/>
+                        Data Programare:    <input type="text"   size="150"   maxlength="150" name="data_programare" /><br/>
+                        </br>
 
-                        <button type="submit" class="btn btn-primary">Adauga</button>     
-                                      
+                            <button type="submit" class="btn btn-primary">Adauga</button>     
+                        <!-- </form>            -->
                     </form>
+                    
                 </div>
             </div>
         </div>

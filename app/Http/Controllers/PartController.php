@@ -14,7 +14,7 @@ class PartController extends Controller
      */
     public function index()
     {
-        $parts = Part::all();
+        $parts = Part::all()->toArray();
         
         return view('part.index', compact('parts'));
         /*$students = Student::all()->toArray();
@@ -74,9 +74,11 @@ class PartController extends Controller
      */
     public function edit($id)
     {
-        $edit = $id;
-        $parts = Part::all();
-        return view('part.index')->with('edit', $edit)->with('parts', $parts);
+        // $edit = $id;
+        // $parts = Part::all();
+        // return view('part.index')->with('edit', $edit)->with('parts', $parts);
+        $part = Part::find($id);
+        return view('part.edit', compact('part', 'id'));
     }
 
     /**
@@ -101,10 +103,21 @@ class PartController extends Controller
         // $part->save();
         // $parts = Part::all();
         // return view('part.index', compact('parts'));
+        // $part = Part::findOrFail($request->parts_id);
+        // $part->update($request->all());
+        // return back();
     {
-        $part = Part::findOrFail($request->parts_id);
-        $part->update($request->all());
-        return back();
+        $this->validate($request, [
+            'cod'    =>  'required',
+            'denumire'     =>  'required',
+            'cantitate'     =>  'required'
+        ]);
+        $part = Part::find($id);
+        $part->cod = $request->get('cod');
+        $part->denumire = $request->get('denumire');
+        $part->cantitate = $request->get('cantitate');
+        $part->save();
+        return redirect('/Part')->with('success', 'Data Updated');
     }
 
     
@@ -123,7 +136,7 @@ class PartController extends Controller
         return redirect('/Part');
     }
 
-    public function editeaza(Request $request)
+    // public function editeaza(Request $request)
 
     // {
     //     $category = Category::findOrFail($request->category_id);
@@ -132,11 +145,11 @@ class PartController extends Controller
        
     //     return back();
     // }
-    {
-            $part = Part::findOrFail($request->parts_id);
-            $part->update($request->all());
-            return back();
-    }
+    // {
+    //         $part = Part::findOrFail($request->parts_id);
+    //         $part->update($request->all());
+    //         return back();
+    // }
     // {
     //     $edit = $request;
     //     $parts = Part::all();
